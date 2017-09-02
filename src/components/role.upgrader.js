@@ -1,6 +1,6 @@
-var utils = require('utils');
+let  utils = require('components/utils');
 
-var roleUpgrader = {
+let  roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -25,7 +25,7 @@ var roleUpgrader = {
             if (creep.memory.roomTarget && creep.room.name != creep.memory.roomTarget) {
                 creep.moveTo(new RoomPosition(25, 25, creep.memory.roomTarget));
     	    } else {
-                utils.moveToClosestContainerOrSource(creep, 0, 2000);
+                utils.moveToClosestContainerOrSource(creep, 0);
     	    }
         }
 	}

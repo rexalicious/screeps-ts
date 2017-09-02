@@ -1,14 +1,14 @@
-var utils = require('utils');
-var cache = require('cache');
+let  utils = require('components/utils');
+let  cache = require('components/cache');
 
-var roleHarvester = {
+let  roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
         let cacheTicks = 5;
         
 	    if(creep.carry.energy < 50) {
-	        utils.moveToClosestContainerOrSource(creep, 0, 0, cacheTicks);
+	        utils.moveToClosestContainerOrSource(creep, 0, cacheTicks);
         }
         else {
             let key = 'harvester-' + creep.name + '-target';

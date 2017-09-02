@@ -1,6 +1,6 @@
-var utils = require('utils');
+let  utils = require('components/utils');
 
-var roleBuilder = {
+let  roleBuilder = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -17,14 +17,14 @@ var roleBuilder = {
 	    if (creep.memory.roomTarget && creep.room.name != creep.memory.roomTarget) {
 	       creep.moveTo(new RoomPosition(25, 25, creep.memory.roomTarget));
 	    } else if (creep.memory.building) {
-	        var repairTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
+	        let  repairTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, {
 	                maxRooms: 1,
 	                filter: (s) => { return (s.structureType == STRUCTURE_WALL && s.hits < 10000)
 	                                || (s.structureType == STRUCTURE_RAMPART && s.hits < 10000)
 	                                || (s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART && s.hits < (s.hitsMax * 0.2)); }
 	        });
 	        
-	        var constructTarget = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
+	        let  constructTarget = creep.pos.findClosestByPath(FIND_MY_CONSTRUCTION_SITES);
 	        
 	        if (!repairTarget && !constructTarget) {
 	            repairTarget = creep.pos.findClosestByPath(FIND_STRUCTURES, { 
@@ -52,7 +52,7 @@ var roleBuilder = {
             }
 	    }
 	    else {
-	        utils.moveToClosestContainerOrSource(creep, 0, 2000);
+	        utils.moveToClosestContainerOrSource(creep, 0);
 	    }
 	}
 };

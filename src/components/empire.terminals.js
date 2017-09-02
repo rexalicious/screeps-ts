@@ -1,7 +1,7 @@
-let Empire = require('empire');
+let Empire = require('components/empire');
 
 module.exports = function(terminals) {
-    let empire = new Empire();
+    let empire = Empire();
     let _DIFF = 20000;
     
     function roomEnergy(room) {

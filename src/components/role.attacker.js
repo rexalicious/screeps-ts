@@ -18,7 +18,7 @@ module.exports = {
             if (creep.pos.getRangeTo(rally) < 4) {
                 let swarmSize = creep.memory.swarmSize || 0;
                 if (swarmSize == 0 || swarmSize <= rally.pos.findInRange(FIND_MY_CREEPS, 4).length) {
-                    for (var i = 0; i < creep.memory.rallyPath.length - 1; i++) {
+                    for (let  i = 0; i < creep.memory.rallyPath.length - 1; i++) {
                         if (creep.memory.rally == creep.memory.rallyPath[i]) {
                             creep.memory.rally = creep.memory.rallyPath[i+1];
                             break;
@@ -40,13 +40,13 @@ module.exports = {
         }
         
         // check for hostiles
-        var hostiles = creep.room.find(FIND_HOSTILE_CREEPS, { filter: c => c.owner.username != 'Source Keeper' && c.owner.username != 'Invader' });
-        var structures = creep.room.find(FIND_HOSTILE_STRUCTURES, { filter: (s) => { return s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART 
+        let  hostiles = creep.room.find(FIND_HOSTILE_CREEPS, { filter: c => c.owner.username != 'Source Keeper' && c.owner.username != 'Invader' });
+        let  structures = creep.room.find(FIND_HOSTILE_STRUCTURES, { filter: (s) => { return s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART 
                                                                                          && s.structureType != STRUCTURE_CONTROLLER && s.structureType != STRUCTURE_KEEPER_LAIR
                                                                                          && s.structureType != STRUCTURE_STORAGE && s.structureType != STRUCTURE_POWER_BANK }});
         let flags = creep.room.find(FIND_FLAGS, { filter: f => f.name.startsWith('target-')});
         
-        //var structures = creep.room.find(FIND_STRUCTURES, { filter: (s) => { return s.structureType != STRUCTURE_CONTROLLER && !s.my }});
+        //let  structures = creep.room.find(FIND_STRUCTURES, { filter: (s) => { return s.structureType != STRUCTURE_CONTROLLER && !s.my }});
         let target = null;
         if (hostiles.length || structures.length || flags.length) {
 

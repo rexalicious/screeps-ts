@@ -1,12 +1,12 @@
-var utils = require('utils');
-var Empire = require('empire');
+let  utils = require('components/utils');
+let  Empire = require('components/empire');
 
 module.exports = function(creep) {
-    let empire = new Empire();
+    let empire = Empire();
     let room = creep.room;
     
     function pickupDropped() {
-        var dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
+        let  dropped = creep.pos.findInRange(FIND_DROPPED_RESOURCES, 1);
         if (dropped && dropped.length > 0) {
             creep.pickup(_.max(dropped, (r) => { return r.amount }));
         }
@@ -15,21 +15,21 @@ module.exports = function(creep) {
     function repairOrBuild() {
         if (creep.getActiveBodyparts(WORK) == 0 || creep.carry[RESOURCE_ENERGY] == 0) return;
         
-        var constructs = creep.pos.findInRange(FIND_MY_CONSTRUCTION_SITES, 3, { filter: (cs) => cs.structureType == STRUCTURE_ROAD });
+        let  constructs = creep.pos.findInRange(FIND_MY_CONSTRUCTION_SITES, 3, { filter: (cs) => cs.structureType == STRUCTURE_ROAD });
         if (constructs && creep.build(constructs[0]) == 0) return;
         
-        var roads = creep.pos.lookFor(LOOK_STRUCTURES, { filter: (s) => s.structureType == STRUCTURE_ROAD && s.hits < s.hitsMax });
+        let  roads = creep.pos.lookFor(LOOK_STRUCTURES, { filter: (s) => s.structureType == STRUCTURE_ROAD && s.hits < s.hitsMax });
         if (roads && creep.repair(roads[0]) == 0) return;
     }
     
     function harvest(transferFrom, transferTo) {
 
         if (transferFrom instanceof Source || transferFrom instanceof Mineral) {
-            var drops = transferFrom.pos.findInRange(FIND_DROPPED_RESOURCES, 2, { filter: (r) => { return r.amount > 0; }});
-            var containers = transferFrom.pos.findInRange(FIND_STRUCTURES, 2, { 
+            let  drops = transferFrom.pos.findInRange(FIND_DROPPED_RESOURCES, 2, { filter: (r) => { return r.amount > 0; }});
+            let  containers = transferFrom.pos.findInRange(FIND_STRUCTURES, 2, { 
                 filter: (s) => { return s.structureType == STRUCTURE_CONTAINER && (creep.getActiveBodyparts(WORK) > 0 ? _.sum(s.store) > 0 : true) }});
                 
-            var all = drops.concat(containers);
+            let  all = drops.concat(containers);
                 
             if (all && all.length > 0) {
                 transferFrom = _.max(all, (c) => { return (c instanceof StructureContainer ? c.store[RESOURCE_ENERGY] : c.amount )});

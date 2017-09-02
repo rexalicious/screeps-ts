@@ -1,12 +1,3 @@
-/*
- * Module code goes here. Use 'module.exports' to export things:
- * module.exports.thing = 'a thing';
- *
- * You can import it from another modules like this:
- * var mod = require('role.attacker');
- * mod.thing == 'a thing'; // true
- */
-
 module.exports = {
     /** @param {Creep} creep **/
     run: function(creep) {
@@ -24,7 +15,7 @@ module.exports = {
             if (creep.pos.getRangeTo(rally) < 4) {
                 let swarmSize = creep.memory.swarmSize || 0;
                 if (swarmSize == 0 || swarmSize <= rally.pos.findInRange(FIND_MY_CREEPS, 4).length) {
-                    for (var i = 0; i < creep.memory.rallyPath.length - 1; i++) {
+                    for (let  i = 0; i < creep.memory.rallyPath.length - 1; i++) {
                         if (creep.memory.rally == creep.memory.rallyPath[i]) {
                             creep.memory.rally = creep.memory.rallyPath[i+1];
                             break;
@@ -74,7 +65,7 @@ module.exports = {
         if (damagedCreeps.length) target = _.min(damagedCreeps, c => c.hitsMax - c.hits);
         
         // nobody's hurt, so let's go hurt someone
-        /*var hostiles, structures;
+        /*let  hostiles, structures;
         if (!target) {
             hostiles = creep.room.find(FIND_HOSTILE_CREEPS);
             structures = creep.room.find(FIND_HOSTILE_STRUCTURES, { filter: (s) => { return s.structureType != STRUCTURE_WALL && s.structureType != STRUCTURE_RAMPART && s.structureType != STRUCTURE_CONTROLLER && s.structureType != STRUCTURE_KEEPER_LAIR }});
